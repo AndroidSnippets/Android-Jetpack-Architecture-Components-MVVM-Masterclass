@@ -1,5 +1,6 @@
 package com.anushka.androidtutz.contactmanager;
 
+import androidx.annotation.NonNull;
 import androidx.room.Room;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
@@ -11,7 +12,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
@@ -32,8 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Contact> contactArrayList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ContactsAppDatabase contactsAppDatabase;
-
-
+    private String TAG = MainActivity.class.getSimpleName();
 
 
     @Override
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(" Contacts Manager ");
 
         recyclerView = findViewById(R.id.recycler_view_contacts);
-        contactsAppDatabase= Room.databaseBuilder(getApplicationContext(),ContactsAppDatabase.class,"ContactDB").build();
+        contactsAppDatabase= Room.databaseBuilder(getApplicationContext(),ContactsAppDatabase.class,"ContactDB").addCallback(callback).build();
 
         new GetAllContactsAsyncTask().execute();
 
@@ -272,5 +276,32 @@ public class MainActivity extends AppCompatActivity {
          contactsAdapter.notifyDataSetChanged();
      }
  }
+
+    RoomDatabase.Callback callback= new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+
+            //Toast.makeText(getApplicationContext()," On Create Called ",Toast.LENGTH_LONG).show();
+            Log.i(TAG, " on create invoked ");
+
+            createContact("name 1","email 1");
+            createContact("name 2","email 2");
+            createContact("name 3","email 3");
+
+
+        }
+
+
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+
+            //  Toast.makeText(getApplicationContext()," On Create Called ",Toast.LENGTH_LONG).show();
+            Log.i(TAG, " on open invoked ");
+
+        }
+
+    };
 
 }
