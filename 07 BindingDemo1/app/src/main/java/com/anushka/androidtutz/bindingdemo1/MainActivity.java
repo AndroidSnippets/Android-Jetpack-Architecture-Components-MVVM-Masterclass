@@ -1,28 +1,23 @@
 package com.anushka.androidtutz.bindingdemo1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.anushka.androidtutz.bindingdemo1.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
 
-    private TextView nameText;
-    private TextView emailText;
-
-
-
+    ActivityMainBinding activityMainBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nameText=findViewById(R.id.tvStudentName);
-        emailText=findViewById(R.id.tvStudentEmail);
-
-        nameText.setText(getCurrentStudent().getStudentName());
-        emailText.setText(getCurrentStudent().getStudentEmail());
-
-
+        activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        activityMainBinding.setStudent(getCurrentStudent());
     }
 
     private Student getCurrentStudent(){
