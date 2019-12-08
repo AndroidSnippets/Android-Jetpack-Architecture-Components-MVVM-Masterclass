@@ -7,6 +7,9 @@
             name="student"
             type="com.anushka.androidtutz.bindingdemo1.Student"/>
 
+        <variable
+            name="clickHandlers"
+            type="com.anushka.androidtutz.bindingdemo1.MainActivity.MainActivityClickHandlers" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,6 +55,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:text="Enroll"
+            android:onClick="@{clickHandlers::onEnrollButtonClicked}"
             android:textSize="36sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,6 +74,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:text="Cancel"
+            android:onClick="@{clickHandlers::onCancelButtonClicked}"
             android:textSize="36sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
