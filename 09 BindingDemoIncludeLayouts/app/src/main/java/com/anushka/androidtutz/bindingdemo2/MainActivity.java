@@ -49,4 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private Student getCurrentStudent(){
+
+        Student student = new Student();
+        student.setStudentName("Alex");
+        student.setStudentEmail("alex@gmail.com");
+        return student;
+
+    }
 }
