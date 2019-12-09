@@ -1,6 +1,9 @@
 package com.anushka.androidtutz.twowaydemo;
 
-public class Contact {
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
+public class Contact extends BaseObservable {
 
     private int id;
     private String name;
@@ -11,6 +14,7 @@ public class Contact {
         this.email = email;
     }
 
+    @Bindable
     public int getId() {
         return id;
     }
@@ -19,14 +23,17 @@ public class Contact {
         this.id = id;
     }
 
+    @Bindable
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+        notifyPropertyChanged(BR.id);
     }
 
+    @Bindable
     public String getEmail() {
         return email;
     }
