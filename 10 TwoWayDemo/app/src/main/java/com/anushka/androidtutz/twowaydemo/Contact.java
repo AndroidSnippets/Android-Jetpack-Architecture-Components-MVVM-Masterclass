@@ -2,6 +2,7 @@ package com.anushka.androidtutz.twowaydemo;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
 
 public class Contact extends BaseObservable {
 
@@ -21,6 +22,8 @@ public class Contact extends BaseObservable {
 
     public void setId(int id) {
         this.id = id;
+        notifyPropertyChanged(BR.id);
+
     }
 
     @Bindable
@@ -30,7 +33,7 @@ public class Contact extends BaseObservable {
 
     public void setName(String name) {
         this.name = name;
-        notifyPropertyChanged(BR.id);
+        notifyPropertyChanged(BR.name);
     }
 
     @Bindable
@@ -40,5 +43,6 @@ public class Contact extends BaseObservable {
 
     public void setEmail(String email) {
         this.email = email;
+        notifyPropertyChanged(BR.email);
     }
 }
